@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeSearchQuery()
     {
-    String githubQuery  = mSearchBox.getText().toString();
-    URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
+    String weatherQuery  = mSearchBox.getText().toString();
+    URL githubSearchUrl = NetworkUtils.buildUrl(weatherQuery);
     mUrlTextView.setText(githubSearchUrl.toString());
 
 
