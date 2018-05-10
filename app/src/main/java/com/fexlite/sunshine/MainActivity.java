@@ -7,11 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.fexlite.utilities.NetworkUtils;
 
-import com.fexlite.sunshine.R;
+import com.fexlite.sunshine.utilities.NetworkUtils;
+
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,15 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
         mSearchBox = (EditText) findViewById(R.id.urlentered);
         mUrlTextView = (TextView) findViewById(R.id.info);
+        mSearchResultsTextView = (TextView) findViewById(R.id.results);
 
     }
 
     private void makeSearchQuery()
     {
     String weatherQuery  = mSearchBox.getText().toString();
-    URL githubSearchUrl = NetworkUtils.buildUrl(weatherQuery);
-    mUrlTextView.setText(githubSearchUrl.toString());
-
+    URL weatherSearchUrl = NetworkUtils.buildUrl(weatherQuery);
+    mUrlTextView.setText(weatherSearchUrl.toString());
+    new GitHubQueryTask().execute(weatherSearchUrl);
 
     }
 
