@@ -12,7 +12,9 @@
         android:layout_width="318dp"
         android:layout_height="54dp"
         android:layout_marginTop="32dp"
-        android:text="@string/enter_url"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,33 +24,38 @@
         android:layout_height="43dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="92dp"
         android:ems="10"
         android:hint="@string/url_search"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="336dp"
-        android:layout_height="260dp"
+        android:layout_height="360dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/urlentered">
+        app:layout_constraintTop_toBottomOf="@+id/urlentered"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <TextView
             android:id="@+id/results"
-            android:layout_width="166dp"
-            android:layout_height="38dp"
+            android:layout_width="266dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="24dp"
             android:layout_marginTop="28dp"
             android:text=""
+            android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.185"
             app:layout_constraintStart_toStartOf="parent"

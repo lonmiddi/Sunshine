@@ -12,9 +12,15 @@ import android.widget.TextView;
 import com.fexlite.sunshine.utilities.NetworkUtils;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     {
     String weatherQuery  = mSearchBox.getText().toString();
     URL weatherSearchUrl = NetworkUtils.buildUrl(weatherQuery);
-    mUrlTextView.setText(weatherSearchUrl.toString());
+
     new GitHubQueryTask().execute(weatherSearchUrl);
 
     }
@@ -63,7 +69,40 @@ public class MainActivity extends AppCompatActivity {
         {
             if(result != null && !result.equals(""))
             {
-                mSearchResultsTextView.setText(result);
+                try {
+                    JSONObject root = new JSONObject(result);
+                    JSONObject coord = root.getJSONObject("coord");
+                    String longitude = coord.getString("lon");
+                    String latitude  = coord.getString("lat");
+                    JSONArray weather = root.getJSONArray("weather");
+                    JSONObject Array1 = weather.getJSONObject(0);
+                    String main = Array1.getString("main");
+                    String description = Array1.getString("description");
+                    JSONObject main2 = root.getJSONObject("main");
+                    Double temp = (main2.getDouble("temp") - 273.15);
+                    DecimalFormat df = new DecimalFormat("###.##");
+                    String truncTemp = df.format(temp);
+
+                    JSONObject sys = root.getJSONObject("sys");
+                    long sunriseRaw = sys.getLong("sunrise");
+                    Date date = new java.util.Date(sunriseRaw*1000L);
+                    SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm:ss z");
+                    String sunrise = sdf.format(date);
+
+                    long sunsetRaw = sys.getLong("sunset");
+                    Date date2 = new java.util.Date(sunsetRaw*1000L);
+                    SimpleDateFormat sdf2 = new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm:ss z");
+                    String sunset = sdf2.format(date2);
+
+                    String country_code = sys.getString("country");
+                    mSearchResultsTextView.setText("Main: "+main+"\nDescription: "+description+"\n Temperatrure: "+truncTemp+"\nSunrise: "+sunrise+"\nSunset: "+sunset);
+                    mUrlTextView.setText(country_code);
+                }catch(JSONException e)
+                {
+                    e.printStackTrace();
+                }
+
+
             }
         }
     }
