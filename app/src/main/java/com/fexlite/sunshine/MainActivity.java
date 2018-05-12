@@ -40,16 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void makeSearchQuery()
+    private void loadWeatherData()
     {
     String weatherQuery  = mSearchBox.getText().toString();
     URL weatherSearchUrl = NetworkUtils.buildUrl(weatherQuery);
 
-    new GitHubQueryTask().execute(weatherSearchUrl);
+    new FetchWeatherTask().execute(weatherSearchUrl);
 
     }
 
-    public class GitHubQueryTask extends AsyncTask<URL, Void, String>
+    public class FetchWeatherTask extends AsyncTask<URL, Void, String>
     {
         @Override
         protected String doInBackground (URL... urls)
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemThatWasClickedId = item.getItemId();
         if (itemThatWasClickedId == R.id.action_search) {
-          makeSearchQuery();
+          loadWeatherData();
             return true;
         }
         return super.onOptionsItemSelected(item);
