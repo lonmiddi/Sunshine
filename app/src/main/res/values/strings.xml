@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sunshine</string>
+    <string name="search">Search</string>
+    <string name="Privacy">Privacy Settings</string>
+    <string name="Cab">Order Cab</string>
+    <string name="log_out">Log Out</string>
+    <string name="enter_url">Enter Query</string>
+    <string name="url_search">Click search and your url will show up here</string>
+    <string name="make_one">Make a a search</string>
+</resources>
